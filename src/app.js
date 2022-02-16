@@ -1,6 +1,6 @@
 const yargs = require ("yargs");
 const {hideBin} = require('yargs/helpers');
-const { addFilm, list } = require("./Movies/movieMethods");
+const { addFilm, listFilm, updateFilm, deleteFilm } = require("./Movies/movieMethods");
 const argv = yargs(hideBin(process.argv)).argv;
 
 const app = async() => {
@@ -11,7 +11,15 @@ const app = async() => {
         }
         await addFilm(filmObj);
     } else if (argv.list) {
-        await list()
+        await listFilm()
+    } else if (argv.update) {
+        await updateFilm(argv);
+    } else if (argv.delete) {
+        const filmDelete = {
+            name: argv.title,
+            actor: argv.actor
+        }
+        await deleteFilm(filmDelete);
     } else {
         console.log('Wrong Query')
     }

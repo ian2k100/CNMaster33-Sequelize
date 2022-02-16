@@ -11,15 +11,16 @@ let sequelize = new Sequelize(process.env.MYSQL_URI);
 
 // Or to authenticate the connection 
 
-// let connection = async() => {
-//     try {
-//         await sequelize.authenticate()
-//     } catch (error) {
-//         console.log(error)
-//     }
-// }
+let connection = async() => {
+    try {
+        await sequelize.authenticate()
+        console.log("Connected to DB")
+    } catch (error) {
+        console.log(error)
+    }
+}
 
-// connection()
+connection()
 
 
 
